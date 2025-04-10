@@ -115,7 +115,15 @@
     </footer>
 
     <script>
-      const bonuslar = JSON.parse(localStorage.getItem("bonuslar")) || [];
+      let bonuslar = [];
+
+fetch("https://eksbonus-admin.onrender.com/bonuslar")
+  .then(res => res.json())
+  .then(data => {
+    bonuslar = data;
+    kartlariGoster(); // bonusları göster
+  });
+
 
       const container = document.getElementById("bonus-container");
 
