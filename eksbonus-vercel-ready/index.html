@@ -117,13 +117,12 @@
     <script>
       let bonuslar = [];
 
-fetch("https://eksbonus-admin.onrender.com/bonuslar")
-  .then(res => res.json())
-  .then(data => {
-    bonuslar = data;
-    kartlariGoster(); // bonusları göster
-  });
-
+      fetch("https://eksbonus-admin.onrender.com/bonuslar")
+        .then(res => res.json())
+        .then(data => {
+          bonuslar = data;
+          kartlariGoster(); // bonusları göster
+        });
 
       const container = document.getElementById("bonus-container");
 
@@ -134,6 +133,7 @@ fetch("https://eksbonus-admin.onrender.com/bonuslar")
           kategori === "Hepsi" || b.etiketler.includes(kategori)
         );
 
+        let htmlContent = ""; // Performans iyileştirme
         filtreli.forEach((bonus) => {
           const etiketHTML = bonus.etiketler.map(e =>
             `<span class="bg-cyan-700 text-white text-xs px-2 py-1 rounded">${e}</span>`
@@ -145,7 +145,7 @@ fetch("https://eksbonus-admin.onrender.com/bonuslar")
             </div>
           ` : '';
 
-          container.innerHTML += `
+          htmlContent += `
       <article class="bonus-card relative bg-slate-800 border border-sky-400 rounded-xl p-4 md:p-6 flex flex-col justify-between shadow-md">
   ${sinirliRozet}
   <div class="flex items-center justify-center h-24">
@@ -160,7 +160,7 @@ fetch("https://eksbonus-admin.onrender.com/bonuslar")
   </div>
   <p class="text-yellow-400 font-bold text-xl md:text-2xl text-left mt-2">${bonus.oran}</p>
   <p class="text-teal-400 text-sm text-left mt-1">${bonus.çevrim}</p>
-  <p class="text-gray-300 text-sm mt-2 text-left">${bonus.detay.substring(0, 60)}...</p>
+  <p class="text-gray-300 text-sm mt-2 text-left overflow-hidden text-ellipsis">${bonus.detay.substring(0, 60)}...</p>
   <div class="etiketler">${etiketHTML}</div>
   <button onclick="toggleDetails(this)" class="text-sm text-gray-400 hover:text-sky-400 font-semibold self-end mt-2">◉ Detaylar</button>
   <div class="popup absolute inset-0 bg-black bg-opacity-90 rounded-xl p-4 z-10 text-sm flex flex-col justify-between">
@@ -175,6 +175,8 @@ fetch("https://eksbonus-admin.onrender.com/bonuslar")
 </article>
           `;
         });
+
+        container.innerHTML = htmlContent; // Tek seferde DOM güncellemesi
       }
 
       document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -184,10 +186,6 @@ fetch("https://eksbonus-admin.onrender.com/bonuslar")
           const kategori = btn.dataset.kategori;
           kartlariGoster(kategori);
         });
-      });
-
-      document.addEventListener("DOMContentLoaded", () => {
-        kartlariGoster();
       });
 
       function toggleDetails(btn) {
