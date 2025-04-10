@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NFS Bonus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hoş geldin bonusları, yatırım kampanyaları, free spinler ve daha fazlası." />
+    <meta name="keywords" content="bahis bonusu, deneme bonusu, çevrimsiz bonus" />
+    <link rel="icon" href="/favicon.png" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+
+    <style>
+      @keyframes wiggle {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(5px); }
+        50% { transform: translateX(-5px); }
+        75% { transform: translateX(3px); }
+        100% { transform: translateX(0); }
+      }
+      .hover-wiggle:hover {
+        animation: wiggle 0.4s ease-in-out;
+      }
+
+      .popup {
+        transition: all 0.3s ease-in-out;
+        transform: scale(0.95);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .popup.active {
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+      }
+
+      .filter-btn.active {
+        background-color: #1e40af;
+        color: white;
+      }
+
+      /* Kart hover animasyonu */
+      .relative.bg-\[\#1A1A2F\] {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .relative.bg-\[\#1A1A2F\]:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .bonus-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .bonus-card:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Üst menü düzenlemeleri */
+      header nav {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+      header nav a {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #94a3b8; /* Daha belirgin bir renk */
+        transition: color 0.3s ease;
+      }
+      header nav a:hover {
+        color: #38bdf8; /* Hover rengi */
+      }
+      header h1 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 3rem; /* Yazı büyütüldü */
+      }
+
+      /* Logo düzenlemeleri */
+      header .logo {
+        height: 200px; /* Logo boyutu büyütüldü */
+        margin-right: 1rem;
+      }
+
+      /* Mobil uyum düzenlemeleri */
+      header nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+        text-align: center;
+      }
+      header nav a {
+        font-size: 0.875rem; /* Mobilde daha küçük yazı boyutu */
+      }
+      header .logo {
+        height: 150px; /* Mobilde logo boyutu küçültüldü */
+      }
+      #kategori-filtreleri {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+      #siralama {
+        width: 100%; /* Mobilde tam genişlik */
+        margin-top: 0.5rem;
+      }
+      .bonus-card {
+        padding: 1rem;
+      }
+      .bonus-card h4 {
+        font-size: 1.25rem; /* Mobilde daha küçük başlık */
+      }
+      .bonus-card p {
+        font-size: 0.875rem; /* Mobilde daha küçük metin */
+      }
+      @media (max-width: 640px) {
+        header h1 {
+          font-size: 2rem; /* Mobilde başlık boyutu küçültüldü */
+        }
+        .bonus-card {
+          padding: 0.75rem;
+        }
+        .bonus-card h4 {
+          font-size: 1rem;
+        }
+        .bonus-card p {
+          font-size: 0.75rem;
+        }
+      }
+      .bonus-card .etiketler {
+        margin-top: 1rem; /* Etiketler için üst boşluk */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-900 text-white">
+    <header class="bg-slate-950 shadow-md">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col items-center">
+        <a href="#" class="mb-2">
+          <img src="deneme2.png" alt="EKS Bonus Logo" class="logo" />
+        </a>
+        <nav>
+          <a href="#" class="hover:text-sky-400">Ana Sayfa</a>
+          <a href="#" class="hover:text-sky-400">Bonuslar</a>
+          <a href="#" class="hover:text-sky-400">SSS</a>
+          <a href="#" class="hover:text-sky-400">İletişim</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="bg-gradient-to-r from-sky-800 to-teal-700 py-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-2">Türkiye’nin En İyi Bonusları</h2>
+      <p class="text-sm text-gray-200">Çevrimsiz, yatırım ve kayıp bonusları tek adreste!</p>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 py-10">
+      <h2 class="text-2xl font-bold text-sky-400 mb-6">Bonuslar</h2>
+      
+      <div class="flex flex-wrap gap-2 mb-6" id="kategori-filtreleri">
+        <button class="filter-btn bg-sky-600 hover:bg-sky-700 text-white px-4 py-1 text-sm rounded active" data-kategori="Hepsi">Hepsi</button>
+        <button class="filter-btn bg-sky-600 hover:bg-sky-700 text-white px-4 py-1 text-sm rounded" data-kategori="Yatırım Bonusu">Yatırım Bonusu</button>
+        <button class="filter-btn bg-sky-600 hover:bg-sky-700 text-white px-4 py-1 text-sm rounded" data-kategori="Deneme Bonusu">Deneme Bonusu</button>
+        <button class="filter-btn bg-sky-600 hover:bg-sky-700 text-white px-4 py-1 text-sm rounded" data-kategori="Yeni Site">Yeni Site</button>
+      </div>
+      
+      <div id="bonus-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </main>
+
+    <footer class="bg-slate-950 text-center text-sm py-6 text-gray-400">
+      © 2025 NFS Bonus. Tüm hakları saklıdır.
+    </footer>
+
+    <script>
+      const bonuslar = JSON.parse(localStorage.getItem("bonuslar")) || [];
+
+      const container = document.getElementById("bonus-container");
+
+      function kartlariGoster(kategori = "Hepsi") {
+        container.innerHTML = "";
+
+        let filtreli = bonuslar.filter((b) =>
+          kategori === "Hepsi" || b.etiketler.includes(kategori)
+        );
+
+        filtreli.forEach((bonus) => {
+          const etiketHTML = bonus.etiketler.map(e =>
+            `<span class="bg-cyan-700 text-white text-xs px-2 py-1 rounded">${e}</span>`
+          ).join('');
+
+          const sinirliRozet = bonus.etiketler.includes("Sınırlı Teklif") ? `
+            <div class="absolute left-0 top-4 z-20">
+              <span class="bg-gradient-to-r from-[#38BDF8] to-[#2DD4BF] text-white px-4 py-1 text-xs font-bold shadow-lg rounded-r-full flex items-center gap-1">SINIRLI TEKLİF</span>
+            </div>
+          ` : '';
+
+          container.innerHTML += `
+      <div class="bonus-card relative bg-slate-800 border border-sky-400 rounded-xl p-4 md:p-6 flex flex-col justify-between shadow-md">
+  ${sinirliRozet}
+  <div class="flex items-center justify-center h-24">
+    <img src="${bonus.logo}" alt="${bonus.isim} logosu" class="max-h-full max-w-[170px] object-contain drop-shadow-md hover-wiggle">
+  </div>
+
+  <!-- Site İsmi ve Derecelendirme -->
+  <div class="flex items-center justify-between gap-2 mt-4">
+    <h4 class="text-white font-extrabold text-xl md:text-2xl">${bonus.isim}</h4>
+    <div class="flex items-center gap-1 text-orange-400 text-base font-bold">
+      <i class="fas fa-star"></i>
+      ${bonus.puan}
+    </div>
+  </div>
+
+  <!-- Bonus Oranı -->
+  <p class="text-yellow-400 font-bold text-xl md:text-2xl text-left mt-2">${bonus.oran}</p>
+
+  <!-- Çevrim bilgisi -->
+  <p class="text-teal-400 text-sm text-left mt-1">${bonus.çevrim}</p>
+
+  <!-- Detay kısa metin -->
+  <p class="text-gray-300 text-sm mt-2 text-left">${bonus.detay.substring(0, 60)}...</p>
+
+  <!-- Etiketler -->
+  <div class="etiketler">
+    ${etiketHTML}
+  </div>
+
+  <button onclick="toggleDetails(this)" class="text-sm text-gray-400 hover:text-sky-400 font-semibold self-end mt-2">◉ Detaylar</button>
+
+  <div class="popup absolute inset-0 bg-black bg-opacity-90 rounded-xl p-4 z-10 text-sm flex flex-col justify-between">
+    <div>
+      <h5 class="text-sky-400 font-bold mb-2">Bonus Detayları</h5>
+      <p class="text-gray-300 text-sm">${bonus.detay}</p>
+    </div>
+    <button onclick="toggleDetails(this)" class="mt-4 text-gray-400 text-sm hover:text-white">Kapat</button>
+  </div>
+
+  <a href="#" class="mt-4 text-center text-white font-bold text-sm md:text-base bg-gradient-to-r from-sky-500 to-teal-400 py-2 rounded w-full hover:opacity-80 transition-transform transform hover:scale-105">BONUSU AL</a>
+
+  <div class="text-gray-400 text-xs mt-2 text-right">Son Güncelleme: 2025-01-01</div>
+</div>
+
+
+
+          `;
+        });
+      }
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const kategori = btn.dataset.kategori;
+          kartlariGoster(kategori);
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        kartlariGoster();
+      });
+
+      function toggleDetails(btn) {
+        const card = btn.closest('.bonus-card'); // Ensure the correct card is targeted
+        const popup = card.querySelector('.popup');
+        popup.classList.toggle('active');
+      }
+    </script>
+  </body>
+</html>
