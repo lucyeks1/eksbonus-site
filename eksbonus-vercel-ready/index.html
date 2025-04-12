@@ -48,13 +48,24 @@
         color: black;
       }
       .bonus-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #1A1A1A; /* Kart arka planı */
+        border: 1px solid #FFD700; /* Altın sarısı çerçeve */
+        color: #FFFFFF; /* Beyaz metin */
         display: flex;
         flex-direction: column;
+        padding: 1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .bonus-card:hover {
         transform: translateY(-4px) scale(1.02);
         box-shadow: 0 10px 20px rgba(255, 255, 0, 0.3);
+      }
+      .bonus-card img {
+        max-width: 100%;
+        height: auto;
+      }
+      .bonus-card > div {
+        text-align: center;
       }
       .etiketler {
         margin-top: 1rem;
@@ -83,7 +94,6 @@
       }
       @media (max-width: 768px) {
         .bonus-card {
-          display: flex; /* Kartların görünmesini sağlar */
           flex-direction: row; /* Yatay hizalama */
           align-items: center;
           justify-content: space-between;
@@ -91,8 +101,6 @@
           height: auto; /* Yükseklik içeriğe göre ayarlanır */
           padding: 1rem;
           gap: 1rem;
-          background-color: #1A1A1A; /* Arka plan rengi */
-          border: 1px solid #FFD700; /* Çerçeve */
         }
         .bonus-card img {
           max-width: 120px; /* Görsel genişliği */
