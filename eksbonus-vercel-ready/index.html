@@ -19,6 +19,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" crossorigin="anonymous"></script>
 
     <style>
       @keyframes wiggle {
@@ -200,10 +201,9 @@
         const mobileMenu = document.getElementById("mobileMenu");
 
         menuToggle.addEventListener("click", () => {
-          mobileMenu.classList.toggle("active"); // Menü görünürlüğünü değiştir
+          mobileMenu.classList.toggle("active");
         });
 
-        // Menü dışında bir yere tıklanınca menüyü kapat
         document.addEventListener("click", (e) => {
           if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
             mobileMenu.classList.remove("active");
@@ -261,59 +261,24 @@
             `<span class="bg-yellow-600 text-black text-xs px-2 py-1 rounded">${e}</span>`
           ).join('');
 
-          const sinirliRozet = bonus.etiketler.includes("Sınırlı Teklif") ? `
-            <div class="absolute left-0 top-4 z-20">
-              <span class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-1 text-xs font-bold shadow-lg rounded-r-full flex items-center gap-1">SINIRLI TEKLİF</span>
-            </div>
-          ` : '';
-
           htmlContent += `
-      <article class="bonus-card relative bg-[#1a1a1a] border border-yellow-500 rounded-xl p-3 md:p-4 flex flex-col justify-between shadow-md text-sm">
-  ${sinirliRozet}
-  <div class="flex items-center justify-center h-20">
-    <img src="${bonus.logo}" alt="${bonus.isim} logosu" class="max-h-full max-w-[140px] object-contain drop-shadow-md hover-wiggle">
-  </div>
-  <div class="flex items-center justify-between gap-2 mt-4">
-    <h3 class="text-white font-extrabold text-lg md:text-xl">${bonus.isim}</h3>
-    <div class="flex items-center gap-1 text-yellow-300 text-sm font-bold">
-      <i class="fas fa-star"></i>
-      ${bonus.puan}
-    </div>
-  </div>
-  <p class="text-yellow-400 font-bold text-lg md:text-xl text-left mt-2">${bonus.oran}</p>
-  <p class="text-yellow-500 text-xs text-left mt-1">${bonus.çevrim}</p>
-  <p class="text-gray-300 text-xs mt-2 text-left overflow-hidden text-ellipsis">${bonus.detay.substring(0, 60)}...</p>
-  <div class="etiketler">${etiketHTML}</div>
-  <button onclick="toggleDetails(this)" class="text-xs text-yellow-300 hover:text-white font-semibold self-end mt-2">◉ Detaylar</button>
-  <div class="popup absolute inset-0 bg-black bg-opacity-90 rounded-xl p-4 z-10 text-xs flex flex-col justify-between">
-    <div>
-      <h5 class="text-yellow-400 font-bold mb-2">Bonus Detayları</h5>
-      <p class="text-yellow-200 text-sm">${bonus.detay}</p>
-          btn.classList.add('active');
-          const kategori = btn.dataset.kategori;
-          kartlariGoster(kategori);
+            <article class="bonus-card">
+              <div>${bonus.isim}</div>
+            </article>
+          `;
+        });
+
+        container.innerHTML = htmlContent;
+      }
+
+      // Eksik kapanışları tamamlayın
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          kartlariGoster(btn.dataset.kategori);
         });
       });
-
-      function toggleDetails(btn) {
-        const card = btn.closest('.bonus-card');
-        const popup = card.querySelector('.popup');
-        popup.classList.toggle('active');
-      }
-    </script>
-  </body>
-</html>"mt-4 text-yellow-500 text-xs hover:text-white">Kapat</button>
-          btn.classList.add('active');
-          const kategori = btn.dataset.kategori;
-          kartlariGoster(kategori);
-        });
-      });
-
-      function toggleDetails(btn) {
-        const card = btn.closest('.bonus-card');
-        const popup = card.querySelector('.popup');
-        popup.classList.toggle('active');
-      }
     </script>
   </body>
 </html>
