@@ -20,19 +20,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "EKS Bonus",
-      "url": "https://eksbonus.vercel.app/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://eksbonus.vercel.app/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
     <style>
       @keyframes wiggle {
         0% { transform: translateX(0); }
@@ -56,8 +43,8 @@
         pointer-events: auto;
       }
       .filter-btn.active {
-        background-color: #1e40af;
-        color: white;
+        background-color: #facc15;
+        color: black;
       }
       .bonus-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -66,7 +53,7 @@
       }
       .bonus-card:hover {
         transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 10px 20px rgba(255, 255, 0, 0.3);
       }
       .etiketler {
         margin-top: 1rem;
@@ -80,48 +67,48 @@
       }
     </style>
   </head>
-  <body class="bg-slate-900 text-white">
-    <header class="bg-slate-950 shadow-md">
+  <body class="bg-black text-yellow-400">
+    <header class="bg-black shadow-md">
       <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col items-center">
         <a href="#" class="mb-2">
           <img src="deneme2.png" alt="EKS Bonus Logo" class="logo" />
         </a>
         <nav class="flex flex-wrap gap-4 justify-center text-center">
-          <a href="#" class="hover:text-sky-400">Ana Sayfa</a>
-          <a href="#" class="hover:text-sky-400">Bonuslar</a>
-          <a href="#" class="hover:text-sky-400">SSS</a>
-          <a href="#" class="hover:text-sky-400">İletişim</a>
+          <a href="#" class="hover:text-yellow-300">Ana Sayfa</a>
+          <a href="#" class="hover:text-yellow-300">Bonuslar</a>
+          <a href="#" class="hover:text-yellow-300">SSS</a>
+          <a href="#" class="hover:text-yellow-300">İletişim</a>
         </nav>
       </div>
     </header>
 
-    <section class="bg-gradient-to-r from-sky-800 to-teal-700 py-12 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-2">Türkiye’nin En İyi Bonusları</h2>
-      <p class="text-sm text-gray-200">Çevrimsiz, yatırım ve kayıp bonusları tek adreste!</p>
+    <section class="bg-gradient-to-r from-yellow-600 to-yellow-400 py-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-2 text-black">Türkiye’nin En İyi Bonusları</h2>
+      <p class="text-sm text-black">Çevrimsiz, yatırım ve kayıp bonusları tek adreste!</p>
     </section>
 
     <main class="max-w-7xl mx-auto px-4 py-10">
       <div class="flex flex-wrap gap-2 mb-6 justify-center" id="kategori-filtreleri">
-        <button class="filter-btn bg-sky-600 hover:bg-sky-700 text-white px-4 py-1 text-sm rounded active" data-kategori="Hepsi">Hepsi</button>
-        <button class="filter-btn bg-sky-600 hover:bg-sky-700 text-white px-4 py-1 text-sm rounded" data-kategori="Yatırım Bonusu">Yatırım Bonusu</button>
-        <button class="filter-btn bg-sky-600 hover:bg-sky-700 text-white px-4 py-1 text-sm rounded" data-kategori="Deneme Bonusu">Deneme Bonusu</button>
-        <button class="filter-btn bg-sky-600 hover:bg-sky-700 text-white px-4 py-1 text-sm rounded" data-kategori="Yeni Site">Yeni Site</button>
+        <button class="filter-btn bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-1 text-sm rounded active" data-kategori="Hepsi">Hepsi</button>
+        <button class="filter-btn bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-1 text-sm rounded" data-kategori="Yatırım Bonusu">Yatırım Bonusu</button>
+        <button class="filter-btn bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-1 text-sm rounded" data-kategori="Deneme Bonusu">Deneme Bonusu</button>
+        <button class="filter-btn bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-1 text-sm rounded" data-kategori="Yeni Site">Yeni Site</button>
       </div>
       <div id="bonus-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-wrap break-words"></div>
     </main>
 
-    <footer class="bg-slate-950 text-center text-sm py-6 text-gray-400">
+    <footer class="bg-black text-center text-sm py-6 text-yellow-500">
       © 2025 EKS Bonus. Tüm hakları saklıdır.
     </footer>
 
     <script>
       let bonuslar = [];
 
-      fetch("https://eksbonus-admin-main.onrender.com/bonuslar") // ✅
+      fetch("https://eksbonus-admin-main.onrender.com/bonuslar")
         .then(res => res.json())
         .then(data => {
           bonuslar = data;
-          kartlariGoster(); // bonusları göster
+          kartlariGoster();
         });
 
       const container = document.getElementById("bonus-container");
@@ -133,50 +120,50 @@
           kategori === "Hepsi" || b.etiketler.includes(kategori)
         );
 
-        let htmlContent = ""; // Performans iyileştirme
+        let htmlContent = "";
         filtreli.forEach((bonus) => {
           const etiketHTML = bonus.etiketler.map(e =>
-            `<span class="bg-cyan-700 text-white text-xs px-2 py-1 rounded">${e}</span>`
+            `<span class="bg-yellow-600 text-black text-xs px-2 py-1 rounded">${e}</span>`
           ).join('');
 
           const sinirliRozet = bonus.etiketler.includes("Sınırlı Teklif") ? `
             <div class="absolute left-0 top-4 z-20">
-              <span class="bg-gradient-to-r from-[#38BDF8] to-[#2DD4BF] text-white px-4 py-1 text-xs font-bold shadow-lg rounded-r-full flex items-center gap-1">SINIRLI TEKLİF</span>
+              <span class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-1 text-xs font-bold shadow-lg rounded-r-full flex items-center gap-1">SINIRLI TEKLİF</span>
             </div>
           ` : '';
 
           htmlContent += `
-      <article class="bonus-card relative bg-slate-800 border border-sky-400 rounded-xl p-4 md:p-6 flex flex-col justify-between shadow-md">
+      <article class="bonus-card relative bg-[#1a1a1a] border border-yellow-500 rounded-xl p-3 md:p-4 flex flex-col justify-between shadow-md text-sm">
   ${sinirliRozet}
-  <div class="flex items-center justify-center h-24">
-    <img src="${bonus.logo}" alt="${bonus.isim} logosu" class="max-h-full max-w-[170px] object-contain drop-shadow-md hover-wiggle">
+  <div class="flex items-center justify-center h-20">
+    <img src="${bonus.logo}" alt="${bonus.isim} logosu" class="max-h-full max-w-[140px] object-contain drop-shadow-md hover-wiggle">
   </div>
   <div class="flex items-center justify-between gap-2 mt-4">
-    <h3 class="text-white font-extrabold text-xl md:text-2xl">${bonus.isim}</h3>
-    <div class="flex items-center gap-1 text-orange-400 text-base font-bold">
+    <h3 class="text-white font-extrabold text-lg md:text-xl">${bonus.isim}</h3>
+    <div class="flex items-center gap-1 text-yellow-300 text-sm font-bold">
       <i class="fas fa-star"></i>
       ${bonus.puan}
     </div>
   </div>
-  <p class="text-yellow-400 font-bold text-xl md:text-2xl text-left mt-2">${bonus.oran}</p>
-  <p class="text-teal-400 text-sm text-left mt-1">${bonus.çevrim}</p>
-  <p class="text-gray-300 text-sm mt-2 text-left overflow-hidden text-ellipsis">${bonus.detay.substring(0, 60)}...</p>
+  <p class="text-yellow-400 font-bold text-lg md:text-xl text-left mt-2">${bonus.oran}</p>
+  <p class="text-yellow-500 text-xs text-left mt-1">${bonus.çevrim}</p>
+  <p class="text-gray-300 text-xs mt-2 text-left overflow-hidden text-ellipsis">${bonus.detay.substring(0, 60)}...</p>
   <div class="etiketler">${etiketHTML}</div>
-  <button onclick="toggleDetails(this)" class="text-sm text-gray-400 hover:text-sky-400 font-semibold self-end mt-2">◉ Detaylar</button>
-  <div class="popup absolute inset-0 bg-black bg-opacity-90 rounded-xl p-4 z-10 text-sm flex flex-col justify-between">
+  <button onclick="toggleDetails(this)" class="text-xs text-yellow-300 hover:text-white font-semibold self-end mt-2">◉ Detaylar</button>
+  <div class="popup absolute inset-0 bg-black bg-opacity-90 rounded-xl p-4 z-10 text-xs flex flex-col justify-between">
     <div>
-      <h5 class="text-sky-400 font-bold mb-2">Bonus Detayları</h5>
-      <p class="text-gray-300 text-sm">${bonus.detay}</p>
+      <h5 class="text-yellow-400 font-bold mb-2">Bonus Detayları</h5>
+      <p class="text-yellow-200 text-sm">${bonus.detay}</p>
     </div>
-    <button onclick="toggleDetails(this)" class="mt-4 text-gray-400 text-sm hover:text-white">Kapat</button>
+    <button onclick="toggleDetails(this)" class="mt-4 text-yellow-500 text-xs hover:text-white">Kapat</button>
   </div>
-  <a href="${bonus.link}" target="_blank" rel="nofollow" class="mt-4 text-center text-white font-bold text-sm md:text-base bg-gradient-to-r from-sky-500 to-teal-400 py-2 rounded w-full hover:opacity-80 transition-transform transform hover:scale-105">BONUSU AL</a>
-  <div class="text-gray-400 text-xs mt-2 text-right">Son Güncelleme: 2025-01-01</div>
+  <a href="${bonus.link}" target="_blank" rel="nofollow" class="mt-4 text-center text-black font-bold text-sm bg-gradient-to-r from-yellow-400 to-yellow-500 py-2 rounded w-full hover:opacity-80 transition-transform transform hover:scale-105">BONUSU AL</a>
+  <div class="text-yellow-500 text-xs mt-2 text-right">Son Güncelleme: 2025-01-01</div>
 </article>
           `;
         });
 
-        container.innerHTML = htmlContent; // Tek seferde DOM güncellemesi
+        container.innerHTML = htmlContent;
       }
 
       document.querySelectorAll('.filter-btn').forEach(btn => {
