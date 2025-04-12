@@ -65,6 +65,16 @@
         max-width: 150px;
         max-height: 150px;
       }
+      @media (max-width: 768px) {
+        .bonus-card {
+          flex-direction: row;
+          align-items: center;
+          gap: 1rem;
+        }
+        .bonus-card img {
+          max-width: 100px;
+        }
+      }
     </style>
   </head>
   <body class="bg-black text-yellow-400">
@@ -73,7 +83,10 @@
         <a href="#" class="mb-2">
           <img src="deneme2.png" alt="EKS Bonus Logo" class="logo" />
         </a>
-        <nav class="flex flex-wrap gap-4 justify-center text-center">
+        <button class="lg:hidden text-yellow-400 text-2xl absolute right-6 top-6" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav id="mobileMenu" class="flex flex-wrap gap-4 justify-center text-center lg:flex hidden">
           <a href="#" class="hover:text-yellow-300">Ana Sayfa</a>
           <a href="#" class="hover:text-yellow-300">Bonuslar</a>
           <a href="#" class="hover:text-yellow-300">SSS</a>
