@@ -82,17 +82,20 @@
       }
       @media (max-width: 768px) {
         .bonus-card {
-          flex-direction: row; /* Kartları yatay hizalar */
+          display: flex; /* Kartların görünmesini sağlar */
+          flex-direction: row; /* Yatay hizalama */
           align-items: center;
           justify-content: space-between;
           width: 100%; /* Kart genişliği */
           height: auto; /* Yükseklik içeriğe göre ayarlanır */
           padding: 1rem;
           gap: 1rem;
+          background-color: #1A1A1A; /* Arka plan rengi */
+          border: 1px solid #FFD700; /* Çerçeve */
         }
         .bonus-card img {
-          max-width: 120px; /* Görselin genişliğini ayarlar */
-          height: auto; /* Görselin yüksekliği orantılı olur */
+          max-width: 120px; /* Görsel genişliği */
+          height: auto; /* Görsel yüksekliği */
         }
         .bonus-card > div {
           flex: 1;
@@ -241,11 +244,16 @@
       const container = document.getElementById("bonus-container");
 
       function kartlariGoster(kategori = "Hepsi") {
-        container.innerHTML = "";
+        container.innerHTML = ""; // Kartları temizle
 
         let filtreli = bonuslar.filter((b) =>
           kategori === "Hepsi" || b.etiketler.includes(kategori)
         );
+
+        if (filtreli.length === 0) {
+          container.innerHTML = `<p class="text-center text-yellow-400">Bu kategoriye ait bonus bulunamadı.</p>`;
+          return;
+        }
 
         let htmlContent = "";
         filtreli.forEach((bonus) => {
